@@ -1,0 +1,39 @@
+<%
+  total_paid = @purchases.to_a.sum(&:paid) 
+  total_profit = @purchases.to_a.sum(&:profit) 
+%>
+  <thead>
+    <tr>
+      <th>Purchase Date</th>
+      <th>Amount</th>
+      <th>Paid</th>
+      <th>Current</th>
+      <th>Profit</th>
+      <th>ROI</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @purchases.each do |purchase| %>
+      <tr>
+        <td><%= human_readable_date from_string(purchase.date) %></td>
+        <td><%= purchase.bitcoin %></td>
+        <td><%= as_usd purchase.paid %></td>
+        <td><%= as_usd purchase.bitcoin.to_usd %></td>
+        <td><%= as_usd purchase.profit %></td>
+        <td><%= "#{roi purchase.profit, purchase.paid}%" %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_purchase_path(purchase), :class => 'btn btn-mini' %>
+      </tr>
+    <% end %>
+    <tr>
+      <td>Totals</td>
+      <td><%= @current_btc %></td>
+      <td><%= as_usd total_paid %></td>
+      <td><%= as_usd @current_btc.to_usd %></td>
+      <td><%= as_usd total_profit %></td>
+      <td><%= "#{roi total_profit, total_paid}%" %></td>
+      <td></td>
+    </tr>
+  </tbody>
