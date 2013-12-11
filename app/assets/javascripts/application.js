@@ -18,4 +18,4 @@
 setInterval(function() { 
   $('#ticker').load('/ticker');
   $('#purchases').load('/update');
-  }, 5000);
+  }, 10000);

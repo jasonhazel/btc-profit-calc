@@ -23,11 +23,11 @@
         <td><%= as_usd purchase.profit %></td>
         <td><%= "#{roi purchase.profit, purchase.paid}%" %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_purchase_path(purchase), :class => 'btn btn-mini' %>
+          <%= link_to 'Details',
+                      purchase_path(purchase), :class => 'btn btn-mini' %>
       </tr>
     <% end %>
-    <tr>
+    <tr class='totals'>
       <td>Totals</td>
       <td><%= @current_btc %></td>
       <td><%= as_usd total_paid %></td>

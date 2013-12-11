@@ -1,4 +1,6 @@
 BtcProfitCalc::Application.routes.draw do
+  root :to => 'purchases#index'
+
   get '/ticker', controller: :application, action: :ticker
   get '/update', controller: :purchases, action: :update
 
@@ -6,7 +8,7 @@ BtcProfitCalc::Application.routes.draw do
   resources :denominations
 
 
-  root :to => 'purchases#index'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

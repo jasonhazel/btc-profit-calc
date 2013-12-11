@@ -15,7 +15,7 @@ class Denomination < ActiveRecord::Base
   class << self
     
     def bitstamp
-      Rails.cache.fetch("bitstamp_cache", expires_in: 15.seconds) do
+      Rails.cache.fetch("bitstamp_cache", expires_in: 5.seconds) do
         Bitstamp::Ticker.last.to_f
       end
     end

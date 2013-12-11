@@ -81,11 +81,4 @@ class PurchasesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  def update
-    @purchases = Purchase.all
-    @current_btc = Bitcoin.new(@purchases.to_a.sum(&:amount))
-
-    render partial: 'purchases/table'
-  end
 end
